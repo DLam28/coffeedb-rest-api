@@ -15,8 +15,7 @@ const usersGet = async (req, res = response) => {
         User.find(query)
             .skip(Number(start))
             .limit(Number(max))
-    ])
-        .catch(err => console.log(err))
+    ]);
 
     res.status(200).json({
         total,

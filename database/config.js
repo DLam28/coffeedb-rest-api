@@ -12,7 +12,9 @@ const dbConnection = async () => {
             useFindAndModify: false
         });
 
-        console.log(`Connected to the ${process.env.DATABASE_NAME} database`);
+        const conn = mongoose.connection;
+        mongoose.connection.once('open', () => { console.log('Mongo Atlas Connected'); });
+        mongoose.connection.on('eirrir', (err) => { console.log('Mongo Atlas error' + err); });
 
 
     } catch (error) {
