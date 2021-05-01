@@ -10,11 +10,12 @@ const dbConnection = async () => {
             useUnifiedTopology: true,
             useCreateIndex: true,
             useFindAndModify: false
-        });
+        })
+            .catch((err) => console.log(`An error ocurred! : ${err}`));
 
         const conn = mongoose.connection;
-        mongoose.connection.once('open', () => { console.log('Mongo Atlas Connected'); });
-        mongoose.connection.on('eirrir', (err) => { console.log('Mongo Atlas error' + err); });
+        conn.on('error', (err) => { console.log('Mongo Atlas error' + err); });
+        conn.once('open', () => { console.log('Mongo Atlas Connected'); });
 
 
     } catch (error) {
