@@ -11,10 +11,7 @@ const validateFields = (req, res, next) => {
 };
 
 
-
-
 module.exports = {
     validateFields
-
 
 }
