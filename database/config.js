@@ -4,18 +4,18 @@ const mongoose = require('mongoose');
 const dbConnection = async () => {
 
     try {
-
+        const conn = mongoose.connection;
         await mongoose.connect(process.env.MONGO_URL, {
             useNewUrlParser: true,
             useUnifiedTopology: true,
             useCreateIndex: true,
             useFindAndModify: false
         })
-            .catch((err) => console.log(`An error ocurred! : ${err}`));
+            .catch((err) => console.log(`There is an error in dbConnection ${err}`))
+            .finally('Connection established succesfully');
 
-        const conn = mongoose.connection;
         conn.on('error', (err) => { console.log('Mongo Atlas error' + err); });
-        conn.once('open', () => { console.log('Mongo Atlas Connected'); });
+        conn.once('open', () => { console.log('Connected to database'); });
 
 
     } catch (error) {

@@ -21,8 +21,8 @@ class Server {
         this.routes();
     };
 
-    async connectDB() {
-        await dbConnection();
+    connectDB() {
+        dbConnection();
     }
 
     middlewares() {

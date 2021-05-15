@@ -7,7 +7,7 @@ const validateJWT = async (req = request, res = response, next) => {
 
     const token = req.header('secret-token');
 
-    if (!token) { res.status(401).json({ msg: 'An error ocurred in token' }) }
+    if (!token) { res.status(401).json({ msg: 'Token is required' }) }
 
     try {
 
