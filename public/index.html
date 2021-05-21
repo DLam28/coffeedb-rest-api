@@ -20,7 +20,7 @@
     <script>
         let url = ( window.location.hostname.includes('localhost') )
         ? 'http://localhost:8080/api/auth/google'
-        : 'https://crud-coffeedb.herokuapp.com';
+        : 'https://crud-coffeedb.herokuapp.com/api/auth/google';
         
         function onSignIn(googleUser) {
         var profile = googleUser.getBasicProfile();
