@@ -1,11 +1,15 @@
 const { Router } = require('express'),
     { check } = require('express-validator');
 
-const { validateRole, validateEmail, existeUserById } = require('../helpers/db-validators');
+const {
+    validateRole,
+    validateEmail,
+    existeUserById } = require('../helpers')
 
 const {
     validateFields,
     validateJWT,
+    myfunc,
     haveRole,
     isAdminRole } = require('../middlewares');
 
@@ -15,6 +19,8 @@ const { usersGet,
     userDelete,
     userPatch,
     notFound } = require('../controllers/user.controllers');
+
+const { dbValidator } = require('../helpers');
 
 const router = Router();
 

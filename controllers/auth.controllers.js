@@ -1,7 +1,8 @@
 const { response } = require('express');
 const User = require('../models/user');
 const bcryptjs = require('bcryptjs');
-const { generateJwt } = require('../helpers/generateJwt');
+
+const { generateJwt, googleVerify } = require('../helpers');
 
 
 const login = async (req, res = response) => {
@@ -40,7 +41,54 @@ const login = async (req, res = response) => {
 
 };
 
+const googleSignIn = async (req, res = response) => {
+
+    const { id_token } = req.body;
+
+    try {
+
+        const { name, email, img } = await googleVerify(id_token);
+
+        let user = await User.findOne({ email });
+
+        if (!user) {
+
+            const data = {
+                name,
+                email,
+                password: '123',
+                img,
+                google: true
+            };
+
+            user = new User(data);
+            await user.save();
+        }
+
+        if (!user.status) {
+            return res.status(401).json({
+                msg: 'User blocked, contact to administrator for more detail.'
+            });
+        }
+
+        const token = await generateJwt(user.id);
+
+
+        res.status(200).json({
+            user,
+            token
+        })
+
+    } catch (error) {
+        res.status(400).json({
+            msg: 'Google Token not valid',
+            error
+        })
+    }
+
+}
 
 module.exports = {
-    login
+    login,
+    googleSignIn
 }

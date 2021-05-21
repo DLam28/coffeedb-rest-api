@@ -22,6 +22,7 @@ const UserSchema = Schema({
     role: {
         type: String,
         required: true,
+        default: 'USER_ROLE',
         emun: ['ADMIN_ROLE', 'USER_ROLE']
     },
     status: {
@@ -40,6 +41,7 @@ const UserSchema = Schema({
 UserSchema.methods.toJSON = function () {
     const { __v, password, _id, ...$user } = this.toObject();
     $user.uid = _id;
+
     return $user;
 }
 

@@ -19,7 +19,6 @@ const isAdminRole = (req = request, res = response, next) => {
 
 const haveRole = (...roles) => {
 
-
     return (req = request, res = response, next) => {
 
         if (!req.user) { return res.status(500).json({ msg: 'Token required to do next step' }) }

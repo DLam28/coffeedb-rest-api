@@ -45,9 +45,10 @@ class Server {
 
     };
 
+
     start() {
         this.app.listen(this.port, () => {
-            console.log(`Server ready in port: http://localhost:${this.port}`);
+            console.log(`Server ready! Listening port in: http://localhost:${this.port}`);
         });
     };
 
