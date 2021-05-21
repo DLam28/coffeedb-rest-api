@@ -74,7 +74,7 @@ const googleSignIn = async (req, res = response) => {
         const token = await generateJwt(user.id);
 
 
-        res.status(200).json({
+        res.json({
             user,
             token
         })
