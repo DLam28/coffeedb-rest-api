@@ -39,8 +39,8 @@ router.get('*', notFound);
 router.post('/', [
     check('name', 'Name is required.').not().isEmpty(),
     check('password', 'Password is required and need to be 8 letters.').isLength({ min: 8 }),
-    check('role').custom(validateRole),
     check('email').custom(validateEmail),
+    check('role').custom(validateRole),
     validateFields
 ], userPost);
 
@@ -70,6 +70,7 @@ router.delete('/:id', [
 
 // PATCH
 router.patch('/', userPatch);
+
 
 
 module.exports = router;
