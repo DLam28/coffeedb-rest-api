@@ -1,7 +1,7 @@
-# Webserver + RestServer
+# Coffee Webserver Rest API
 
-## Notas importantes
-Instalar los módulos de node: 
+## Requirements
+Node modules:
 ```
 npm i
 ```
