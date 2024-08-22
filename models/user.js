@@ -1,20 +1,18 @@
-const { Schema, model } = require('mongoose');
-
+const { Schema, model } = require("mongoose");
 
 const UserSchema = Schema({
-
     name: {
         type: String,
-        required: [true, 'The name is required']
+        required: [true, "The name is required"],
     },
     email: {
         type: String,
-        required: [true, 'The email is required'],
-        unique: true
+        required: [true, "The email is required"],
+        unique: true,
     },
     password: {
         type: String,
-        required: [true, 'The password is required'],
+        required: [true, "The password is required"],
     },
     img: {
         type: String,
@@ -22,18 +20,17 @@ const UserSchema = Schema({
     role: {
         type: String,
         required: true,
-        default: 'USER_ROLE',
-        emun: ['ADMIN_ROLE', 'USER_ROLE']
+        default: "USER_ROLE",
+        emun: ["ADMIN_ROLE", "USER_ROLE"],
     },
     status: {
         type: Boolean,
-        default: true
+        default: true,
     },
     google: {
         type: Boolean,
-        default: false
+        default: false,
     },
-
 });
 
 //Method to hide fields
@@ -43,8 +40,6 @@ UserSchema.methods.toJSON = function () {
     $user.uid = _id;
 
     return $user;
-}
+};
 
-
-
-module.exports = model('User', UserSchema);
+module.exports = model("User", UserSchema);
